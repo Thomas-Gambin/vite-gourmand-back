@@ -1,5 +1,6 @@
 parameters:
     app.email_verification_ttl_hours: 24
+    app.password_reset_ttl_hours: 1
 
 services:
     _defaults:
@@ -19,3 +20,8 @@ services:
     App\Service\Auth\EmailVerificationTokenGenerator:
         arguments:
             $ttlHours: '%app.email_verification_ttl_hours%'
+
+    App\Service\Auth\PasswordResetTokenGenerator:
+        class: App\Service\Auth\EmailVerificationTokenGenerator
+        arguments:
+            $ttlHours: '%app.password_reset_ttl_hours%'

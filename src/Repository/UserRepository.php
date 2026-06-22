@@ -20,4 +20,9 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['emailVerificationToken' => $hash]);
     }
+
+    public function findOneByPasswordResetTokenHash(string $hash): ?User
+    {
+        return $this->findOneBy(['passwordResetToken' => $hash]);
+    }
 }
