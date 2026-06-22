@@ -15,4 +15,9 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    public function findOneByEmailVerificationTokenHash(string $hash): ?User
+    {
+        return $this->findOneBy(['emailVerificationToken' => $hash]);
+    }
 }
