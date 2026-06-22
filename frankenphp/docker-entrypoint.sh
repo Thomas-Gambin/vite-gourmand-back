@@ -6,6 +6,11 @@ if [ "$1" = 'frankenphp' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 		composer install --prefer-dist --no-progress --no-interaction
 	fi
 
+	if [ ! -d "public/assets/bundles/apiplatform" ]; then
+		echo 'Installation des assets des bundles...'
+		php bin/console assets:install public --no-interaction
+	fi
+
 	if [ "${WAIT_FOR_DB:-true}" = "true" ] && { [ -n "$DATABASE_URL" ] || grep -q ^DATABASE_URL= .env 2>/dev/null; }; then
 		echo 'En attente de la base de données...'
 		ATTEMPTS_LEFT_TO_REACH_DATABASE=60
