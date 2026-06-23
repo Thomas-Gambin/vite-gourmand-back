@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Confirmation de commande {{ numeroCommande }}</title>
+  </head>
+  <body style="margin:0;padding:0;background:#faf8f5;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#faf8f5;padding:24px 0;">
+      <tr>
+        <td align="center">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="600" style="width:600px;max-width:92vw;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(42,37,32,0.08);">
+            <tr>
+              <td style="padding:22px 22px 0 22px;">
+                <div style="display:inline-block;padding:10px 14px;border-radius:999px;background:#f5ecee;color:#6b2c35;font-weight:800;">
+                  Vite &amp; Gourmand
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:18px 22px 0 22px;">
+                <h1 style="margin:0;font-size:22px;line-height:1.25;color:#2a2520;">
+                  Merci {{ prenom }} !
+                </h1>
+                <p style="margin:12px 0 0 0;font-size:15px;line-height:1.55;color:#5c5349;">
+                  Votre commande <strong>{{ numeroCommande }}</strong> a bien été enregistrée.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:18px 22px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#faf8f5;border-radius:12px;padding:16px;">
+                  <tr>
+                    <td style="font-size:14px;color:#5c5349;padding:4px 0;"><strong>Menu :</strong> {{ menuTitle }}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:14px;color:#5c5349;padding:4px 0;"><strong>Date de prestation :</strong> {{ datePrestation }}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:14px;color:#5c5349;padding:4px 0;"><strong>Heure de livraison :</strong> {{ heureLivraison }}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:14px;color:#5c5349;padding:4px 0;"><strong>Nombre de personnes :</strong> {{ nombrePersonne }}</td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:14px;color:#5c5349;padding:4px 0;"><strong>Total :</strong> {{ total }} €</td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:14px;color:#5c5349;padding:4px 0;"><strong>Statut :</strong> {{ statut }}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 22px 22px 22px;">
+                <p style="margin:0;font-size:13px;line-height:1.5;color:#5c5349;">
+                  Notre équipe traitera votre commande dans les meilleurs délais. Vous serez informé(e) de toute évolution.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

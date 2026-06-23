@@ -60,6 +60,17 @@ class Commande
     #[ORM\Column(options: ['default' => false])]
     private bool $restitutionMateriel = false;
 
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    private ?string $adressePrestation = null;
+
+    #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
+    private ?string $villePrestation = null;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $codePostalPrestation = null;
+
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotNull]
@@ -191,6 +202,42 @@ class Commande
     public function setRestitutionMateriel(bool $restitutionMateriel): static
     {
         $this->restitutionMateriel = $restitutionMateriel;
+
+        return $this;
+    }
+
+    public function getAdressePrestation(): ?string
+    {
+        return $this->adressePrestation;
+    }
+
+    public function setAdressePrestation(string $adressePrestation): static
+    {
+        $this->adressePrestation = $adressePrestation;
+
+        return $this;
+    }
+
+    public function getVillePrestation(): ?string
+    {
+        return $this->villePrestation;
+    }
+
+    public function setVillePrestation(string $villePrestation): static
+    {
+        $this->villePrestation = $villePrestation;
+
+        return $this;
+    }
+
+    public function getCodePostalPrestation(): ?string
+    {
+        return $this->codePostalPrestation;
+    }
+
+    public function setCodePostalPrestation(?string $codePostalPrestation): static
+    {
+        $this->codePostalPrestation = $codePostalPrestation;
 
         return $this;
     }

@@ -38,7 +38,9 @@ security:
         - { path: ^/api/forgot-password, roles: PUBLIC_ACCESS }
         - { path: ^/api/reset-password, roles: PUBLIC_ACCESS }
         - { path: ^/api/logout, roles: PUBLIC_ACCESS }
-        - { path: ^/api/me, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/me$, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/menus, roles: PUBLIC_ACCESS }
+        - { path: ^/api/commandes, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
