@@ -12,6 +12,9 @@ security:
         dev:
             pattern: ^/(_profiler|_wdt|assets|build)/
             security: false
+        api_menus:
+            pattern: ^/api/menus
+            security: false
         api:
             pattern: ^/api
             stateless: true
@@ -39,7 +42,6 @@ security:
         - { path: ^/api/reset-password, roles: PUBLIC_ACCESS }
         - { path: ^/api/logout, roles: PUBLIC_ACCESS }
         - { path: ^/api/me, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/api/menus, roles: PUBLIC_ACCESS }
         - { path: ^/api/commandes, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:

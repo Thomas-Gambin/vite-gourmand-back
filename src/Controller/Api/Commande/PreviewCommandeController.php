@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Api\Commande;
 
 use App\Dto\Commande\CreateCommandePreviewPayload;
+use App\Exception\GeocodingException;
 use App\Repository\MenuRepository;
 use App\Service\CommandeValidator;
 use App\Service\OrderPriceCalculator;
@@ -40,7 +41,12 @@ final class PreviewCommandeController
             ], Response::HTTP_NOT_FOUND);
         }
 
-        $fields = $this->commandeValidator->validateForPreview($menu, $payload->nombrePersonne);
+        $fields = $this->commandeValidator->validateForPreview(
+            $menu,
+            $payload->nombrePersonne,
+            $payload->adressePrestation,
+            $payload->villePrestation,
+        );
         if ($fields !== []) {
             return new JsonResponse([
                 'code' => 'VALIDATION_ERROR',
@@ -49,11 +55,23 @@ final class PreviewCommandeController
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $breakdown = $this->priceCalculator->calculate(
-            $menu,
-            $payload->nombrePersonne,
-            $payload->villePrestation
-        );
+        try {
+            $breakdown = $this->priceCalculator->calculate(
+                $menu,
+                $payload->nombrePersonne,
+                $payload->adressePrestation,
+                $payload->villePrestation,
+                $payload->codePostalPrestation,
+            );
+        } catch (GeocodingException) {
+            return new JsonResponse([
+                'code' => 'GEOCODING_FAILED',
+                'message' => 'Impossible de localiser cette adresse. Vérifiez l\'adresse, le code postal et la ville.',
+                'fields' => [
+                    'adressePrestation' => 'Impossible de localiser cette adresse. Vérifiez l\'adresse, le code postal et la ville.',
+                ],
+            ], Response::HTTP_BAD_REQUEST);
+        }
 
         return new JsonResponse($breakdown->toArray(), Response::HTTP_OK);
     }

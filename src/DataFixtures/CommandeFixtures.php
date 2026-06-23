@@ -178,7 +178,9 @@ class CommandeFixtures extends Fixture implements DependentFixtureInterface
             $breakdown = $this->priceCalculator->calculate(
                 $menu,
                 $data['nombrePersonne'],
-                $data['villePrestation'] ?? 'Bordeaux'
+                $data['adressePrestation'] ?? '1 rue de la République',
+                $data['villePrestation'] ?? 'Bordeaux',
+                $data['codePostalPrestation'] ?? '33000',
             );
             $commande->setPrixMenu($breakdown->prixMenu);
             $commande->setPrixLivraison($data['prixLivraison']);

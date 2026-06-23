@@ -7,6 +7,7 @@ namespace App\Controller\Api\Me;
 use App\Dto\Commande\CommandeDetailDto;
 use App\Dto\Commande\UpdateCommandePayload;
 use App\Entity\User;
+use App\Exception\GeocodingException;
 use App\Repository\CommandeRepository;
 use App\Service\CommandeStatus;
 use App\Service\CommandeValidator;
@@ -79,11 +80,23 @@ final class UpdateUserOrderController
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $breakdown = $this->priceCalculator->calculate(
-            $menu,
-            $payload->nombrePersonne,
-            $payload->villePrestation
-        );
+        try {
+            $breakdown = $this->priceCalculator->calculate(
+                $menu,
+                $payload->nombrePersonne,
+                $payload->adressePrestation,
+                $payload->villePrestation,
+                $payload->codePostalPrestation,
+            );
+        } catch (GeocodingException) {
+            return new JsonResponse([
+                'code' => 'GEOCODING_FAILED',
+                'message' => 'Impossible de localiser cette adresse. Vérifiez l\'adresse, le code postal et la ville.',
+                'fields' => [
+                    'adressePrestation' => 'Impossible de localiser cette adresse. Vérifiez l\'adresse, le code postal et la ville.',
+                ],
+            ], Response::HTTP_BAD_REQUEST);
+        }
 
         $commande->setAdressePrestation(trim($payload->adressePrestation));
         $commande->setVillePrestation(trim($payload->villePrestation));
@@ -96,6 +109,7 @@ final class UpdateUserOrderController
         $commande->setPretMateriel($payload->pretMateriel);
         $commande->setPrixMenu($breakdown->prixMenu);
         $commande->setPrixLivraison($breakdown->prixLivraison);
+        $commande->setDistanceLivraisonKm($breakdown->distanceLivraisonKm);
 
         $this->entityManager->flush();
 

@@ -31,7 +31,7 @@ final class CommandeValidator
             $fields['nombrePersonne'] = 'Le nombre de personnes doit être strictement positif.';
         } elseif ($nombrePersonne < $menu->getNombrePersonneMinimum()) {
             $fields['nombrePersonne'] = sprintf(
-                'Le nombre de personnes doit être au minimum de %d pour ce menu.',
+                'Ce menu est disponible à partir de %d personnes minimum.',
                 $menu->getNombrePersonneMinimum()
             );
         }
@@ -58,8 +58,12 @@ final class CommandeValidator
     /**
      * @return array<string, string>
      */
-    public function validateForPreview(?Menu $menu, int $nombrePersonne): array
-    {
+    public function validateForPreview(
+        ?Menu $menu,
+        int $nombrePersonne,
+        string $adressePrestation,
+        string $villePrestation,
+    ): array {
         $fields = [];
 
         if ($menu === null) {
@@ -70,11 +74,19 @@ final class CommandeValidator
             $fields['menuId'] = 'Ce menu n’est plus disponible (stock épuisé).';
         }
 
+        if (trim($adressePrestation) === '') {
+            $fields['adressePrestation'] = "L'adresse de prestation est obligatoire.";
+        }
+
+        if (trim($villePrestation) === '') {
+            $fields['villePrestation'] = 'La ville de prestation est obligatoire.';
+        }
+
         if ($nombrePersonne <= 0) {
             $fields['nombrePersonne'] = 'Le nombre de personnes doit être strictement positif.';
         } elseif ($nombrePersonne < $menu->getNombrePersonneMinimum()) {
             $fields['nombrePersonne'] = sprintf(
-                'Le nombre de personnes doit être au minimum de %d pour ce menu.',
+                'Ce menu est disponible à partir de %d personnes minimum.',
                 $menu->getNombrePersonneMinimum()
             );
         }

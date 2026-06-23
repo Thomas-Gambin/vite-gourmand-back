@@ -73,6 +73,9 @@ class Commande
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $codePostalPrestation = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $distanceLivraisonKm = null;
+
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotNull]
@@ -255,6 +258,18 @@ class Commande
     public function setCodePostalPrestation(?string $codePostalPrestation): static
     {
         $this->codePostalPrestation = $codePostalPrestation;
+
+        return $this;
+    }
+
+    public function getDistanceLivraisonKm(): ?string
+    {
+        return $this->distanceLivraisonKm;
+    }
+
+    public function setDistanceLivraisonKm(?string $distanceLivraisonKm): static
+    {
+        $this->distanceLivraisonKm = $distanceLivraisonKm;
 
         return $this;
     }

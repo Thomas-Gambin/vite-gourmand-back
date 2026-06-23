@@ -49,4 +49,11 @@ final class MoneyMath
     {
         return self::format(self::parseToCents($left) + self::parseToCents($right));
     }
+
+    public static function multiplyRate(string $amount, float $factor): string
+    {
+        $cents = self::parseToCents($amount);
+
+        return self::format((int) round($cents * $factor));
+    }
 }

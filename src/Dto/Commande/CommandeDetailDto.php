@@ -49,7 +49,9 @@ final readonly class CommandeDetailDto
         $breakdown = $calculator->calculate(
             $menu,
             (int) $commande->getNombrePersonne(),
-            (string) $commande->getVillePrestation()
+            (string) $commande->getAdressePrestation(),
+            (string) $commande->getVillePrestation(),
+            $commande->getCodePostalPrestation(),
         );
         $total = MoneyMath::add((string) $commande->getPrixMenu(), (string) $commande->getPrixLivraison());
         $statut = (string) $commande->getStatut();
