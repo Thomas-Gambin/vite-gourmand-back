@@ -16,6 +16,10 @@ final readonly class UserProfileDto
         public string $email,
         public string $nom,
         public string $prenom,
+        public string $telephone,
+        public string $adressePostale,
+        public string $ville,
+        public string $pays,
         public array $roles,
         public bool $isVerified,
     ) {
@@ -28,6 +32,10 @@ final readonly class UserProfileDto
             email: (string) $user->getEmail(),
             nom: (string) $user->getNom(),
             prenom: (string) $user->getPrenom(),
+            telephone: (string) $user->getTelephone(),
+            adressePostale: (string) $user->getAdressePostale(),
+            ville: (string) $user->getVille(),
+            pays: (string) $user->getPays(),
             roles: $user->getRoles(),
             isVerified: $user->isVerified(),
         );
@@ -43,6 +51,10 @@ final readonly class UserProfileDto
             'email' => $this->email,
             'nom' => $this->nom,
             'prenom' => $this->prenom,
+            'telephone' => $this->telephone,
+            'adressePostale' => $this->adressePostale,
+            'ville' => $this->ville,
+            'pays' => $this->pays,
             'roles' => $this->roles,
             'isVerified' => $this->isVerified,
         ];

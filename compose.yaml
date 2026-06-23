@@ -13,6 +13,7 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-16}&charset=utf8
       MAILER_DSN: ${MAILER_DSN:-null://null}
       MAILERSEND_API_KEY: ${MAILERSEND_API_KEY:-}
+      USE_MAILPIT: ${USE_MAILPIT:-0}
       MAIL_FROM: ${MAIL_FROM:-contact@thomas-gambin.com}
       MAIL_TO: ${MAIL_TO:-}
       FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}

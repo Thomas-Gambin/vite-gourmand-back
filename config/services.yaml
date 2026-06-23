@@ -1,6 +1,8 @@
 parameters:
     app.email_verification_ttl_hours: 24
     app.password_reset_ttl_hours: 1
+    app.delivery_origin_lat: 44.8422
+    app.delivery_origin_lon: -0.5708
 
 services:
     _defaults:
@@ -25,3 +27,10 @@ services:
         class: App\Service\Auth\EmailVerificationTokenGenerator
         arguments:
             $ttlHours: '%app.password_reset_ttl_hours%'
+
+    App\Service\Delivery\DeliveryDistanceProviderInterface: '@App\Service\Delivery\BanDeliveryDistanceProvider'
+
+    App\Service\Delivery\BanDeliveryDistanceProvider:
+        arguments:
+            $originLat: '%app.delivery_origin_lat%'
+            $originLon: '%app.delivery_origin_lon%'
