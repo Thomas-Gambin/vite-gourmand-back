@@ -10,6 +10,7 @@ use App\Entity\Commande;
 use App\Entity\User;
 use App\Repository\MenuRepository;
 use App\Service\CommandeNumberGenerator;
+use App\Service\CommandeHistoriqueService;
 use App\Service\CommandeValidator;
 use App\Service\Mail\OrderConfirmationEmailService;
 use App\Service\OrderPriceCalculator;
@@ -32,6 +33,7 @@ final class CreateCommandeController
         private readonly OrderPriceCalculator $priceCalculator,
         private readonly CommandeValidator $commandeValidator,
         private readonly CommandeNumberGenerator $numberGenerator,
+        private readonly CommandeHistoriqueService $historiqueService,
         private readonly OrderConfirmationEmailService $confirmationEmailService,
         private readonly ValidatorInterface $validator,
         private readonly LoggerInterface $logger,
@@ -99,6 +101,8 @@ final class CreateCommandeController
         );
         $commande->setUtilisateur($user);
         $commande->setMenu($menu);
+
+        $this->historiqueService->record($commande, 'en_attente', $commande->getDateCommande());
 
         $menu->setQuantiteRestante($menu->getQuantiteRestante() - 1);
 

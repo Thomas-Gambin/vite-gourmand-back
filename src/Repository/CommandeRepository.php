@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Commande;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,6 +15,59 @@ class CommandeRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Commande::class);
+    }
+
+    /**
+     * @return list<Commande>
+     */
+    public function findByUtilisateur(User $utilisateur): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.menu', 'm')
+            ->addSelect('m')
+            ->where('c.utilisateur = :utilisateur')
+            ->setParameter('utilisateur', $utilisateur)
+            ->orderBy('c.dateCommande', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findOneByIdAndUtilisateur(int $id, User $utilisateur): ?Commande
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.menu', 'm')
+            ->addSelect('m')
+            ->leftJoin('c.utilisateur', 'u')
+            ->addSelect('u')
+            ->leftJoin('c.historiqueStatuts', 'h')
+            ->addSelect('h')
+            ->leftJoin('c.avis', 'a')
+            ->addSelect('a')
+            ->where('c.id = :id')
+            ->andWhere('c.utilisateur = :utilisateur')
+            ->setParameter('id', $id)
+            ->setParameter('utilisateur', $utilisateur)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @return list<Commande>
+     */
+    public function findReviewableByUtilisateur(User $utilisateur): array
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.menu', 'm')
+            ->addSelect('m')
+            ->leftJoin('c.avis', 'a')
+            ->where('c.utilisateur = :utilisateur')
+            ->andWhere('c.statut = :statut')
+            ->andWhere('a.id IS NULL')
+            ->setParameter('utilisateur', $utilisateur)
+            ->setParameter('statut', 'terminee')
+            ->orderBy('c.datePrestation', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 
     public function findLastSequenceForYear(string $year): int

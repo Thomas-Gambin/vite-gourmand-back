@@ -34,6 +34,10 @@ class Avis
     #[Assert\NotNull]
     private ?User $utilisateur = null;
 
+    #[ORM\OneToOne(inversedBy: 'avis')]
+    #[ORM\JoinColumn(nullable: true, unique: true)]
+    private ?Commande $commande = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -83,6 +87,18 @@ class Avis
     public function setUtilisateur(?User $utilisateur): static
     {
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): static
+    {
+        $this->commande = $commande;
 
         return $this;
     }

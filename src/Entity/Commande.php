@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -80,6 +82,21 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotNull]
     private ?Menu $menu = null;
+
+    #[ORM\OneToOne(mappedBy: 'commande', targetEntity: Avis::class)]
+    private ?Avis $avis = null;
+
+    /**
+     * @var Collection<int, CommandeHistoriqueStatut>
+     */
+    #[ORM\OneToMany(targetEntity: CommandeHistoriqueStatut::class, mappedBy: 'commande', cascade: ['persist'], orphanRemoval: true)]
+    #[ORM\OrderBy(['dateModification' => 'ASC'])]
+    private Collection $historiqueStatuts;
+
+    public function __construct()
+    {
+        $this->historiqueStatuts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -262,6 +279,51 @@ class Commande
     public function setMenu(?Menu $menu): static
     {
         $this->menu = $menu;
+
+        return $this;
+    }
+
+    public function getAvis(): ?Avis
+    {
+        return $this->avis;
+    }
+
+    public function setAvis(?Avis $avis): static
+    {
+        if ($avis !== null && $avis->getCommande() !== $this) {
+            $avis->setCommande($this);
+        }
+
+        $this->avis = $avis;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CommandeHistoriqueStatut>
+     */
+    public function getHistoriqueStatuts(): Collection
+    {
+        return $this->historiqueStatuts;
+    }
+
+    public function addHistoriqueStatut(CommandeHistoriqueStatut $historiqueStatut): static
+    {
+        if (!$this->historiqueStatuts->contains($historiqueStatut)) {
+            $this->historiqueStatuts->add($historiqueStatut);
+            $historiqueStatut->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistoriqueStatut(CommandeHistoriqueStatut $historiqueStatut): static
+    {
+        if ($this->historiqueStatuts->removeElement($historiqueStatut)) {
+            if ($historiqueStatut->getCommande() === $this) {
+                $historiqueStatut->setCommande(null);
+            }
+        }
 
         return $this;
     }
