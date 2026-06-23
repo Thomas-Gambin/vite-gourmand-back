@@ -18,7 +18,7 @@ final class ConfirmRegistrationEmailService
         private readonly string $frontendUrl,
     ) {}
 
-    public function send(string $toEmail, string $prenom, string $plainToken): void
+    public function send(string $toEmail, string $prenom, string $plainToken, bool $isEmailChange = false): void
     {
         $base = rtrim($this->frontendUrl, '/');
         $confirmUrl = $base.'/confirm-email?token='.rawurlencode($plainToken);
@@ -26,13 +26,30 @@ final class ConfirmRegistrationEmailService
         $html = $this->twig->render('emails/confirm_registration.html.twig', [
             'prenom' => $prenom,
             'confirmUrl' => $confirmUrl,
+            'isEmailChange' => $isEmailChange,
         ]);
+
+        $subject = $isEmailChange
+            ? 'Confirmez votre nouvelle adresse email — Vite & Gourmand'
+            : 'Confirmez votre inscription Vite & Gourmand';
+
+        $intro = $isEmailChange
+            ? 'Vous avez modifié l’adresse email de votre compte Vite & Gourmand.'
+            : 'Merci de vous être inscrit sur Vite & Gourmand.';
+
+        $text = sprintf(
+            "Bonjour %s,\n\n%s Pour activer votre compte, confirmez votre adresse email en ouvrant ce lien (valable 24 h) :\n\n%s\n",
+            $prenom,
+            $intro,
+            $confirmUrl,
+        );
 
         $this->client->send([
             'from' => ['email' => $this->fromEmail, 'name' => 'Vite & Gourmand'],
             'to' => [['email' => $toEmail]],
-            'subject' => 'Confirmez votre inscription Vite & Gourmand',
+            'subject' => $subject,
             'html' => $html,
+            'text' => $text,
         ]);
     }
 }

@@ -17,12 +17,12 @@ final class UpdateProfilePayload
         #[Assert\Length(max: 50, maxMessage: 'Le prénom doit contenir au maximum {{ limit }} caractères.')]
         public readonly string $prenom,
 
-        #[Assert\NotBlank(message: "L'email est obligatoire.")]
-        #[Assert\Email(message: "L'email n'est pas valide.")]
-        public readonly string $email,
-
         #[Assert\NotBlank(message: 'Le téléphone est obligatoire.')]
         #[Assert\Length(max: 50, maxMessage: 'Le téléphone doit contenir au maximum {{ limit }} caractères.')]
+        #[Assert\Regex(
+            pattern: '/^0[1-9]\d{8}$/',
+            message: 'Le numéro de téléphone est invalide.',
+        )]
         public readonly string $telephone,
 
         #[Assert\NotBlank(message: 'La ville est obligatoire.')]

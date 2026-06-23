@@ -8,6 +8,7 @@ services:
       - /app/var
     environment:
       MAILER_DSN: smtp://mailer:1025
+      USE_MAILPIT: ${USE_MAILPIT:-1}
       RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
       CADDY_GLOBAL_OPTIONS: auto_https off
     extra_hosts:

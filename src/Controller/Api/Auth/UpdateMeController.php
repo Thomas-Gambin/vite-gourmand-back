@@ -7,7 +7,6 @@ namespace App\Controller\Api\Auth;
 use App\Dto\Auth\UpdateProfilePayload;
 use App\Dto\Auth\UserProfileDto;
 use App\Entity\User;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,7 +21,6 @@ final class UpdateMeController
 {
     public function __construct(
         private readonly Security $security,
-        private readonly UserRepository $userRepository,
         private readonly EntityManagerInterface $entityManager,
         private readonly ValidatorInterface $validator,
     ) {
@@ -44,19 +42,6 @@ final class UpdateMeController
             return $this->validationErrorResponse($violations);
         }
 
-        $email = strtolower(trim($payload->email));
-        if ($email !== $user->getEmail()) {
-            $existing = $this->userRepository->findOneBy(['email' => $email]);
-            if ($existing !== null && $existing->getId() !== $user->getId()) {
-                return new JsonResponse([
-                    'code' => 'VALIDATION_ERROR',
-                    'message' => 'Les informations du profil sont invalides.',
-                    'fields' => ['email' => 'Cet email est déjà utilisé.'],
-                ], Response::HTTP_BAD_REQUEST);
-            }
-            $user->setEmail($email);
-        }
-
         $user->setNom(trim($payload->nom));
         $user->setPrenom(trim($payload->prenom));
         $user->setTelephone(trim($payload->telephone));
@@ -67,7 +52,7 @@ final class UpdateMeController
         $this->entityManager->flush();
 
         return new JsonResponse([
-            'message' => 'Profil mis à jour avec succès.',
+            'message' => 'Vos informations personnelles ont bien été mises à jour.',
             'user' => UserProfileDto::fromUser($user)->toArray(),
         ], Response::HTTP_OK);
     }

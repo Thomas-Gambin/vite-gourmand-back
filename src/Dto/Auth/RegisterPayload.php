@@ -40,6 +40,10 @@ final class RegisterPayload
             max: 50,
             maxMessage: 'Le téléphone doit contenir au maximum {{ limit }} caractères.'
         )]
+        #[Assert\Regex(
+            pattern: '/^0[1-9]\d{8}$/',
+            message: 'Le numéro de téléphone est invalide.',
+        )]
         public readonly string $telephone,
 
         #[Assert\NotBlank(message: 'La ville est obligatoire.')]

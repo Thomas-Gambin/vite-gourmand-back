@@ -28,8 +28,13 @@
                   Bienvenue {{ prenom }} !
                 </h1>
                 <p style="margin:12px 0 0 0;font-size:15px;line-height:1.55;color:#5c5349;">
-                  Merci de vous être inscrit sur Vite &amp; Gourmand. Pour activer votre compte et commander nos menus,
-                  confirmez votre adresse email en cliquant sur le bouton ci-dessous.
+                  {% if isEmailChange|default(false) %}
+                    Vous avez modifié l’adresse email de votre compte. Pour continuer à utiliser Vite &amp; Gourmand,
+                    confirmez votre nouvelle adresse en cliquant sur le bouton ci-dessous.
+                  {% else %}
+                    Merci de vous être inscrit sur Vite &amp; Gourmand. Pour activer votre compte et commander nos menus,
+                    confirmez votre adresse email en cliquant sur le bouton ci-dessous.
+                  {% endif %}
                 </p>
               </td>
             </tr>
