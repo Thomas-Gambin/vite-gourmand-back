@@ -9,6 +9,7 @@ use App\Entity\Avis;
 use App\Entity\User;
 use App\Repository\AvisRepository;
 use App\Repository\CommandeRepository;
+use App\Service\AvisStatus;
 use App\Service\CommandeStatus;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -81,7 +82,7 @@ final class CreateOrderReviewController
         $avis = new Avis();
         $avis->setNote($payload->note);
         $avis->setDescription(trim($payload->commentaire));
-        $avis->setStatut('en_attente');
+        $avis->setStatut(AvisStatus::EN_ATTENTE);
         $avis->setUtilisateur($user);
         $avis->setCommande($commande);
 
