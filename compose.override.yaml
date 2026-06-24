@@ -7,8 +7,9 @@ services:
       - ./frankenphp/conf.d/20-app.dev.ini:/usr/local/etc/php/app.conf.d/20-app.dev.ini:ro
       - /app/var
     environment:
-      MAILER_DSN: smtp://mailer:1025
-      USE_MAILPIT: ${USE_MAILPIT:-1}
+      MAILER_DSN: ${MAILER_DSN:-null://null}
+      USE_MAILPIT: ${USE_MAILPIT:-0}
+      MAILERSEND_API_KEY: ${MAILERSEND_API_KEY:-}
       RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
       CADDY_GLOBAL_OPTIONS: auto_https off
     extra_hosts:

@@ -25,6 +25,8 @@ class CommandeRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('c')
             ->leftJoin('c.menu', 'm')
             ->addSelect('m')
+            ->leftJoin('c.avis', 'a')
+            ->addSelect('a')
             ->where('c.utilisateur = :utilisateur')
             ->setParameter('utilisateur', $utilisateur)
             ->orderBy('c.dateCommande', 'DESC')
@@ -47,6 +49,7 @@ class CommandeRepository extends ServiceEntityRepository
             ->andWhere('c.utilisateur = :utilisateur')
             ->setParameter('id', $id)
             ->setParameter('utilisateur', $utilisateur)
+            ->addOrderBy('h.dateModification', 'ASC')
             ->getQuery()
             ->getOneOrNullResult();
     }

@@ -1,0 +1,513 @@
+/* Charte graphique Vite & Gourmand — alignée sur le frontend React */
+
+:root {
+    --vg-brand: #6b2c35;
+    --vg-brand-light: #7d3842;
+    --vg-brand-muted: #f5ecee;
+    --vg-surface: #faf8f5;
+    --vg-surface-muted: #f2eeea;
+    --vg-surface-elevated: #ffffff;
+    --vg-text: #2a2520;
+    --vg-text-muted: #5c5349;
+    --vg-border: #ddd5cb;
+
+    --font-family-base: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-size-base: 15px;
+
+    --color-primary: var(--vg-brand);
+    --color-success: #2f6b4f;
+    --text-color: var(--vg-text);
+    --text-muted: var(--vg-text-muted);
+    --text-on-primary: #ffffff;
+
+    --body-bg: var(--vg-surface);
+    --content-bg: var(--vg-surface-elevated);
+    --border-color: var(--vg-border);
+    --border-radius: 0.6rem;
+    --border-radius-lg: 1rem;
+
+    --sidebar-bg: var(--vg-surface-elevated);
+    --sidebar-border-color: var(--vg-border);
+    --sidebar-logo-color: var(--vg-brand);
+    --sidebar-menu-color: var(--vg-text-muted);
+    --sidebar-menu-icon-color: var(--vg-brand);
+    --sidebar-menu-active-item-bg: var(--vg-brand-muted);
+    --sidebar-menu-active-item-color: var(--vg-brand);
+    --sidebar-menu-submenu-color: var(--vg-text-muted);
+    --sidebar-menu-header-color: var(--vg-text-muted);
+
+    --responsive-header-bg: var(--vg-surface-elevated);
+    --responsive-header-border-color: var(--vg-border);
+    --responsive-header-logo-color: var(--vg-brand);
+
+    --content-top-border-color: var(--vg-border);
+    --content-section-border-color: var(--vg-border);
+
+    --table-thead-color: var(--vg-text);
+    --table-cell-color: var(--vg-text-muted);
+    --table-cell-border-color: var(--vg-border);
+    --table-hover-cell-bg: var(--vg-brand-muted);
+    --table-selected-cell-bg: #efe4e6;
+    --table-thead-sorted-color: var(--vg-brand);
+    --table-thead-sorted-marker-color: var(--vg-brand);
+
+    --form-label-color: var(--vg-text);
+    --form-input-text-color: var(--vg-text);
+    --form-input-border-color: var(--vg-border);
+    --form-input-hover-border-color: #c9bfb3;
+    --form-control-bg: var(--vg-surface-elevated);
+    --form-switch-checked-bg: var(--vg-brand);
+    --form-type-check-input-checked-bg: var(--vg-brand);
+
+    --button-primary-bg: var(--vg-brand);
+    --button-primary-color: #ffffff;
+    --button-primary-border-color: var(--vg-brand);
+    --button-primary-hover-bg: var(--vg-brand-light);
+    --button-primary-hover-color: #ffffff;
+    --button-primary-hover-border-color: var(--vg-brand-light);
+    --button-primary-active-bg: #5a2430;
+    --button-primary-active-color: #ffffff;
+    --button-primary-active-border-color: #5a2430;
+    --button-primary-box-shadow: 0 4px 14px rgba(107, 44, 53, 0.22);
+
+    --pagination-active-bg: var(--vg-brand);
+    --pagination-active-color: #ffffff;
+    --pagination-color: var(--vg-text-muted);
+
+    --link-color: var(--vg-brand);
+    --link-hover-color: var(--vg-brand-light);
+
+    --badge-boolean-true-bg: var(--vg-brand);
+    --badge-boolean-true-color: #ffffff;
+
+    --user-name-color: var(--vg-text-muted);
+    --user-avatar-icon-bg: var(--vg-brand-muted);
+    --user-avatar-icon-color: var(--vg-brand);
+
+    --dropdown-bg: var(--vg-surface-elevated);
+    --dropdown-border-color: var(--vg-border);
+    --dropdown-link-color: var(--vg-text);
+    --dropdown-link-hover-bg: var(--vg-brand-muted);
+    --dropdown-settings-active-item-color: var(--vg-brand);
+
+    --modal-bg: var(--vg-surface-elevated);
+    --modal-header-bg: var(--vg-surface-muted);
+    --modal-footer-bg: var(--vg-surface-muted);
+    --modal-border-color: var(--vg-border);
+
+    --page-login-bg: var(--vg-surface);
+    --page-login-form-bg: var(--vg-surface-elevated);
+}
+
+/* Forcer le thème clair (charte chaude du site) */
+body {
+    color-scheme: light;
+    background: var(--vg-surface);
+    color: var(--vg-text);
+}
+
+.ea-dark-scheme {
+    --body-bg: var(--vg-surface);
+    --content-bg: var(--vg-surface-elevated);
+    --sidebar-bg: var(--vg-surface-elevated);
+    --text-color: var(--vg-text);
+    --text-muted: var(--vg-text-muted);
+    --color-primary: var(--vg-brand);
+    --sidebar-menu-active-item-bg: var(--vg-brand-muted);
+    --sidebar-menu-active-item-color: var(--vg-brand);
+    --table-cell-color: var(--vg-text-muted);
+    --form-control-bg: var(--vg-surface-elevated);
+}
+
+/* Masquer le sélecteur clair/sombre */
+.dropdown-settings {
+    display: none !important;
+}
+
+/* En-tête sidebar */
+#main-menu .menu .menu-item a.menu-item-contents {
+    border-radius: 0.75rem;
+}
+
+#main-menu .menu .menu-item.active > a.menu-item-contents,
+#main-menu .menu .menu-item.expanded > a.menu-item-contents {
+    font-weight: 600;
+}
+
+/* Titre page */
+.content-header-title,
+.page-content h1,
+.content-panel h1 {
+    color: var(--vg-text);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+
+.content-panel p {
+    color: var(--vg-text-muted);
+}
+
+.content-panel .vg-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0 0 0.75rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(107, 44, 53, 0.15);
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--vg-brand);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* Boutons principaux */
+.btn-primary,
+.action-primary {
+    border-radius: 0.6rem;
+}
+
+/* Badges statuts commande / avis */
+.badge {
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.badge-primary {
+    background: var(--vg-brand-muted) !important;
+    color: var(--vg-brand) !important;
+}
+
+.badge-success {
+    background: #e8f3ed !important;
+    color: #2f6b4f !important;
+}
+
+.badge-warning {
+    background: #fff4e5 !important;
+    color: #8a5a12 !important;
+}
+
+.badge-danger {
+    background: #fdecec !important;
+    color: #9b1c1c !important;
+}
+
+.badge-secondary {
+    background: var(--vg-surface-muted) !important;
+    color: var(--vg-text-muted) !important;
+}
+
+.badge-info {
+    background: #eef4fb !important;
+    color: #2f5f8a !important;
+}
+
+/* Tableaux */
+.table thead th {
+    font-weight: 600;
+    color: var(--vg-text);
+    white-space: nowrap;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table tbody td {
+    font-size: 0.92rem;
+}
+
+.table .vg-menu-title {
+    font-weight: 600;
+    color: var(--vg-text);
+}
+
+.table .badge {
+    white-space: nowrap;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(245, 236, 238, 0.45);
+}
+
+.datagrid .content-panel {
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.datagrid .table-responsive {
+    border-radius: 0.75rem;
+}
+
+.datagrid td.text-center,
+.datagrid th.text-center,
+.datagrid td.field-integer,
+.datagrid td.field-money,
+.datagrid th.header-for-field-integer,
+.datagrid th.header-for-field-money {
+    text-align: center !important;
+}
+
+/* Cartes / panneaux */
+.content-panel {
+    background: linear-gradient(135deg, rgba(245, 236, 238, 0.9), rgba(255, 255, 255, 0.95));
+    border: 1px solid rgba(107, 44, 53, 0.12);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    box-shadow: 0 8px 24px rgba(42, 37, 32, 0.05);
+}
+
+/* Focus accessibilité */
+:focus-visible {
+    outline: 2px solid var(--vg-brand);
+    outline-offset: 2px;
+}
+
+/* Pages d'action commande (changement statut, annulation) */
+.vg-commande-action {
+    margin-top: 0.5rem;
+}
+
+.vg-commande-action__grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.vg-commande-summary {
+    background: var(--vg-surface-elevated);
+    border: 1px solid rgba(107, 44, 53, 0.12);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(42, 37, 32, 0.05);
+}
+
+.vg-commande-summary__title {
+    margin: 0 0 1.25rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--vg-text);
+    letter-spacing: -0.02em;
+}
+
+.vg-commande-summary__meta {
+    margin: 0 0 1.25rem;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.vg-commande-summary__row {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.vg-commande-summary__row dt {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--vg-text-muted);
+}
+
+.vg-commande-summary__row dd {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--vg-text);
+    font-weight: 500;
+}
+
+.vg-commande-summary__link {
+    width: 100%;
+    border-radius: 0.6rem;
+}
+
+.vg-commande-action__panel {
+    margin: 0;
+}
+
+.vg-commande-action__panel--danger {
+    background: linear-gradient(135deg, rgba(253, 236, 236, 0.35), rgba(255, 255, 255, 0.95));
+    border-color: rgba(155, 28, 28, 0.15);
+}
+
+.vg-commande-action__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--vg-text);
+    letter-spacing: -0.02em;
+}
+
+.vg-commande-action__lead {
+    margin: 0 0 1.5rem;
+    color: var(--vg-text-muted);
+    line-height: 1.6;
+    max-width: 42rem;
+}
+
+.vg-commande-action__alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 0.9rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(155, 28, 28, 0.18);
+    background: rgba(253, 236, 236, 0.65);
+    color: #7a1f1f;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.vg-commande-action__alert .fa {
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.vg-commande-form .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.vg-commande-form .form-label {
+    font-weight: 600;
+    color: var(--vg-text);
+}
+
+.vg-commande-form .form-select,
+.vg-commande-form .form-control {
+    border-radius: 0.6rem;
+    border-color: var(--vg-border);
+    background-color: var(--vg-surface-elevated);
+    padding: 0.65rem 0.85rem;
+}
+
+.vg-commande-form .form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%235c5349' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+    background-size: 0.85rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.vg-commande-form .form-select-lg {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    padding-right: 2.75rem;
+}
+
+/* Liste de statuts (boutons radio) */
+.vg-status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.vg-status-list .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--vg-border);
+    border-radius: 0.75rem;
+    background: var(--vg-surface-elevated);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.vg-status-list .form-check:hover {
+    border-color: rgba(107, 44, 53, 0.35);
+    background: rgba(245, 236, 238, 0.45);
+}
+
+.vg-status-list .form-check:has(.form-check-input:checked) {
+    border-color: var(--vg-brand);
+    background: var(--vg-brand-muted);
+    box-shadow: 0 0 0 1px rgba(107, 44, 53, 0.12);
+}
+
+.vg-status-list .form-check:has(.form-check-input[data-current="true"]) {
+    border-style: dashed;
+}
+
+.vg-status-list .form-check:has(.form-check-input[data-current="true"]:checked) {
+    border-style: solid;
+}
+
+.vg-commande-action__current {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(107, 44, 53, 0.15);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.vg-commande-action__current-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--vg-text-muted);
+}
+
+.vg-status-list .form-check-input {
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.vg-status-list .form-check-input:checked {
+    background-color: var(--vg-brand);
+    border-color: var(--vg-brand);
+}
+
+.vg-status-list .form-check-label {
+    margin: 0;
+    font-weight: 500;
+    color: var(--vg-text);
+    cursor: pointer;
+}
+
+.vg-commande-form__field {
+    max-width: 32rem;
+}
+
+.vg-commande-action__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(107, 44, 53, 0.1);
+}
+
+.vg-commande-action__actions .btn {
+    border-radius: 0.6rem;
+    padding: 0.65rem 1.25rem;
+    font-weight: 600;
+}
+
+.vg-commande-action__actions .btn .fa {
+    margin-right: 0.35rem;
+}
+
+@media (max-width: 991px) {
+    .vg-commande-action__grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,21 @@
+action:
+    save: Enregistrer
+    save_and_continue: 'Enregistrer et continuer'
+    save_and_return: 'Enregistrer et retourner'
+    save_and_add_another: 'Enregistrer et en ajouter un autre'
+    delete: Supprimer
+    edit: Modifier
+    detail: Détail
+    index: Liste
+    new: Créer
+    search: Rechercher
+    cancel: Annuler
+
+label:
+    empty: Vide
+    'null': 'N/A'
+    'true': Oui
+    'false': Non
+
+paginator:
+    counter: '<strong>%start%</strong> - <strong>%end%</strong> sur <strong>%results%</strong>'

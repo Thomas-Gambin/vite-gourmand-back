@@ -115,19 +115,18 @@ final class MailerSendClient
 
     private function shouldUseSymfonyMailer(): bool
     {
-        if (!$this->useMailpit) {
-            return $this->apiKey === '' || $this->apiKey === 'test';
-        }
-
-        if ($this->mailerDsn !== 'null://null') {
-            return true;
-        }
-
-        return $this->apiKey === '' || $this->apiKey === 'test';
+        return !$this->hasValidApiKey();
     }
 
     private function canFallbackToSymfonyMailer(): bool
     {
-        return $this->useMailpit && $this->mailerDsn !== 'null://null';
+        return $this->hasValidApiKey()
+            && $this->useMailpit
+            && $this->mailerDsn !== 'null://null';
+    }
+
+    private function hasValidApiKey(): bool
+    {
+        return $this->apiKey !== '' && $this->apiKey !== 'test';
     }
 }

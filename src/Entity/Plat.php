@@ -12,6 +12,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'plat')]
 class Plat
 {
+    public const TYPE_ENTREE = 'entree';
+    public const TYPE_PLAT = 'plat';
+    public const TYPE_DESSERT = 'dessert';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -23,6 +27,11 @@ class Plat
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
+
+    #[ORM\Column(length: 20, options: ['default' => self::TYPE_PLAT])]
+    #[Assert\NotBlank]
+    #[Assert\Choice(choices: [self::TYPE_ENTREE, self::TYPE_PLAT, self::TYPE_DESSERT])]
+    private ?string $typePlat = self::TYPE_PLAT;
 
     /**
      * @var Collection<int, Menu>
@@ -68,6 +77,18 @@ class Plat
     public function setPhoto(?string $photo): static
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getTypePlat(): ?string
+    {
+        return $this->typePlat;
+    }
+
+    public function setTypePlat(string $typePlat): static
+    {
+        $this->typePlat = $typePlat;
 
         return $this;
     }

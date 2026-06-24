@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\HoraireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HoraireRepository::class)]
 #[ORM\Table(name: 'horaire')]
+#[UniqueEntity(fields: ['jour'], message: 'Un horaire existe déjà pour ce jour.')]
 class Horaire
 {
     #[ORM\Id]

@@ -1,0 +1,38 @@
+<div class="vg-commande-summary">
+    <p class="vg-eyebrow">Commande</p>
+    <h2 class="vg-commande-summary__title">{{ commande.numeroCommande }}</h2>
+
+    <dl class="vg-commande-summary__meta">
+        <div class="vg-commande-summary__row">
+            <dt>Statut actuel</dt>
+            <dd>
+                <span class="badge badge-{{ statusBadge }}">{{ statusLabel }}</span>
+            </dd>
+        </div>
+        <div class="vg-commande-summary__row">
+            <dt>Client</dt>
+            <dd>{{ commande.utilisateur.prenom }} {{ commande.utilisateur.nom }}</dd>
+        </div>
+        <div class="vg-commande-summary__row">
+            <dt>Menu</dt>
+            <dd>{{ commande.menu.titre }}</dd>
+        </div>
+        <div class="vg-commande-summary__row">
+            <dt>Date de commande</dt>
+            <dd>{{ commande.dateCommande|date('d/m/Y H:i') }}</dd>
+        </div>
+        <div class="vg-commande-summary__row">
+            <dt>Prestation</dt>
+            <dd>{{ commande.datePrestation|date('d/m/Y') }} à {{ commande.heureLivraison }}</dd>
+        </div>
+        <div class="vg-commande-summary__row">
+            <dt>Personnes</dt>
+            <dd>{{ commande.nombrePersonne }}</dd>
+        </div>
+    </dl>
+
+    <a class="btn btn-secondary btn-sm vg-commande-summary__link"
+       href="{{ ea_url().setController('App\\Controller\\Employee\\Crud\\CommandeCrudController').setAction('detail').setEntityId(commande.id) }}">
+        <i class="fa fa-eye"></i> Voir le détail
+    </a>
+</div>

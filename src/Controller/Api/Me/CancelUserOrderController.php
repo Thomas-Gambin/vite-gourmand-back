@@ -7,7 +7,7 @@ namespace App\Controller\Api\Me;
 use App\Dto\Commande\CommandeDetailDto;
 use App\Entity\User;
 use App\Repository\CommandeRepository;
-use App\Service\CommandeHistoriqueService;
+use App\Service\CommandeAnnulationService;
 use App\Service\CommandeStatus;
 use App\Service\OrderPriceCalculator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,7 +24,7 @@ final class CancelUserOrderController
         private readonly Security $security,
         private readonly CommandeRepository $commandeRepository,
         private readonly EntityManagerInterface $entityManager,
-        private readonly CommandeHistoriqueService $historiqueService,
+        private readonly CommandeAnnulationService $annulationService,
         private readonly OrderPriceCalculator $priceCalculator,
     ) {
     }
@@ -55,14 +55,7 @@ final class CancelUserOrderController
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $commande->setStatut(CommandeStatus::ANNULEE);
-        $this->historiqueService->record($commande, CommandeStatus::ANNULEE);
-
-        $menu = $commande->getMenu();
-        if ($menu !== null) {
-            $menu->setQuantiteRestante($menu->getQuantiteRestante() + 1);
-        }
-
+        $this->annulationService->annuler($commande, $user, null, false);
         $this->entityManager->flush();
 
         $commande = $this->commandeRepository->findOneByIdAndUtilisateur($id, $user);

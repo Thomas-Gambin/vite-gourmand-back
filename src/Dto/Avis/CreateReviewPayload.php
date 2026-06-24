@@ -14,6 +14,12 @@ final class CreateReviewPayload
         public readonly int $note,
 
         #[Assert\NotBlank(message: 'Le commentaire est obligatoire.')]
+        #[Assert\Length(
+            min: 10,
+            max: 1000,
+            minMessage: 'Le commentaire doit contenir au moins {{ limit }} caractères.',
+            maxMessage: 'Le commentaire ne peut pas dépasser {{ limit }} caractères.',
+        )]
         public readonly string $commentaire,
     ) {
     }

@@ -26,6 +26,7 @@ final readonly class CommandeTrackingDto
         foreach ($commande->getHistoriqueStatuts() as $entry) {
             $date = $entry->getDateModification();
             $etapes[] = [
+                'id' => (int) $entry->getId(),
                 'statut' => (string) $entry->getStatut(),
                 'dateModification' => $date?->format(\DateTimeInterface::ATOM) ?? '',
                 'heureModification' => $date?->format('H:i') ?? '',
