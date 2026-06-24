@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion — Vite &amp; Gourmand</title>
+    <link rel="stylesheet" href="{{ asset('css/admin-vite-gourmand.css') }}">
+    <style>
+        body.login-page {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 1.5rem;
+            background: var(--vg-surface);
+            color: var(--vg-text);
+            font-family: var(--font-family-base);
+        }
+        .login-card {
+            width: min(100%, 26rem);
+            background: var(--vg-surface-elevated);
+            border: 1px solid var(--vg-border);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            box-shadow: 0 12px 30px rgba(42, 37, 32, 0.08);
+        }
+        .login-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        .login-brand-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.65rem;
+            background: var(--vg-brand);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .login-brand-title {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--vg-brand);
+        }
+        .login-brand-subtitle {
+            margin: 0.15rem 0 0;
+            font-size: 0.8rem;
+            color: var(--vg-text-muted);
+        }
+        .login-card h1 {
+            margin: 0 0 0.5rem;
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+        .login-card p {
+            margin: 0 0 1.5rem;
+            color: var(--vg-text-muted);
+            line-height: 1.5;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+            padding: 0.75rem 0.9rem;
+            border: 1px solid var(--vg-border);
+            border-radius: 0.6rem;
+            background: var(--vg-surface-elevated);
+            color: var(--vg-text);
+        }
+        input:focus {
+            outline: 2px solid var(--vg-brand);
+            outline-offset: 1px;
+            border-color: var(--vg-brand);
+        }
+        button {
+            width: 100%;
+            border: 0;
+            border-radius: 0.6rem;
+            padding: 0.85rem 1rem;
+            background: var(--vg-brand);
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(107, 44, 53, 0.22);
+        }
+        button:hover {
+            background: var(--vg-brand-light);
+        }
+        .error {
+            margin-bottom: 1rem;
+            padding: 0.75rem 0.9rem;
+            border-radius: 0.6rem;
+            background: #fdecec;
+            color: #9b1c1c;
+        }
+    </style>
+</head>
+<body class="login-page">
+    <main class="login-card">
+        <div class="login-brand">
+            <span class="login-brand-icon" aria-hidden="true">V&amp;G</span>
+            <div>
+                <p class="login-brand-title">Vite &amp; Gourmand</p>
+                <p class="login-brand-subtitle">Traiteur à Bordeaux</p>
+            </div>
+        </div>
+
+        <h1>Espace employé</h1>
+        <p>Connectez-vous pour accéder au back-office.</p>
+
+        {% if error %}
+            <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_username" value="{{ last_username }}" autocomplete="email" required>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="_password" autocomplete="current-password" required>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit">Se connecter</button>
+        </form>
+    </main>
+</body>
+</html>

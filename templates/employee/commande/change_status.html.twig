@@ -1,0 +1,61 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% form_theme form '@EasyAdmin/crud/form_theme.html.twig' %}
+
+{% block content_title %}Changer le statut{% endblock %}
+
+{% block main %}
+    <div class="vg-commande-action">
+        <div class="vg-commande-action__grid">
+            <aside class="vg-commande-action__aside">
+                {% include 'employee/commande/_summary.html.twig' %}
+            </aside>
+
+            <section class="vg-commande-action__panel content-panel">
+                <p class="vg-eyebrow">Mise à jour</p>
+                <h2 class="vg-commande-action__title">Nouveau statut</h2>
+                <p class="vg-commande-action__lead">
+                    Choisissez un statut dans la liste ci-dessous. Pour une annulation, utilisez l'action dédiée.
+                </p>
+
+                <div class="vg-commande-action__current">
+                    <span class="vg-commande-action__current-label">Statut sélectionné</span>
+                    <span class="badge badge-{{ statusBadge }}" id="vg-selected-status-badge">{{ statusLabel }}</span>
+                </div>
+
+                {{ form_start(form, { attr: { class: 'vg-commande-form', novalidate: 'novalidate' } }) }}
+                    <div class="vg-commande-form__field">
+                        {{ form_row(form.statut) }}
+                    </div>
+
+                    <div class="vg-commande-action__actions">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-check"></i> Mettre à jour
+                        </button>
+                        <a class="btn btn-secondary"
+                           href="{{ ea_url().setController('App\\Controller\\Employee\\Crud\\CommandeCrudController').setAction('detail').setEntityId(commande.id) }}">
+                            Retour
+                        </a>
+                    </div>
+                {{ form_end(form) }}
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.vg-status-list .form-check-input').forEach((input) => {
+            input.addEventListener('change', () => {
+                if (!input.checked) {
+                    return;
+                }
+
+                const badge = document.getElementById('vg-selected-status-badge');
+                if (!badge) {
+                    return;
+                }
+
+                badge.textContent = input.dataset.label ?? badge.textContent;
+                badge.className = `badge badge-${input.dataset.badge ?? '{{ statusBadge }}'}`;
+            });
+        });
+    </script>
+{% endblock %}

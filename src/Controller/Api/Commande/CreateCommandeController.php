@@ -11,7 +11,8 @@ use App\Entity\User;
 use App\Exception\GeocodingException;
 use App\Repository\MenuRepository;
 use App\Service\CommandeNumberGenerator;
-use App\Service\CommandeHistoriqueService;
+use App\Service\CommandeStatutService;
+use App\Service\CommandeStatus;
 use App\Service\CommandeValidator;
 use App\Service\Mail\OrderConfirmationEmailService;
 use App\Service\OrderPriceCalculator;
@@ -34,7 +35,7 @@ final class CreateCommandeController
         private readonly OrderPriceCalculator $priceCalculator,
         private readonly CommandeValidator $commandeValidator,
         private readonly CommandeNumberGenerator $numberGenerator,
-        private readonly CommandeHistoriqueService $historiqueService,
+        private readonly CommandeStatutService $statutService,
         private readonly OrderConfirmationEmailService $confirmationEmailService,
         private readonly ValidatorInterface $validator,
         private readonly LoggerInterface $logger,
@@ -105,7 +106,6 @@ final class CreateCommandeController
         $commande->setPrixMenu($breakdown->prixMenu);
         $commande->setPrixLivraison($breakdown->prixLivraison);
         $commande->setDistanceLivraisonKm($breakdown->distanceLivraisonKm);
-        $commande->setStatut('en_attente');
         $commande->setPretMateriel($payload->pretMateriel);
         $commande->setRestitutionMateriel(false);
         $commande->setAdressePrestation(trim($payload->adressePrestation));
@@ -116,7 +116,7 @@ final class CreateCommandeController
         $commande->setUtilisateur($user);
         $commande->setMenu($menu);
 
-        $this->historiqueService->record($commande, 'en_attente', $commande->getDateCommande());
+        $this->statutService->changerStatut($commande, CommandeStatus::EN_ATTENTE, $user, $commande->getDateCommande());
 
         $menu->setQuantiteRestante($menu->getQuantiteRestante() - 1);
 

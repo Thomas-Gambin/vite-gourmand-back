@@ -2,6 +2,10 @@ security:
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
+    role_hierarchy:
+        ROLE_EMPLOYEE: ROLE_USER
+        ROLE_ADMIN: ROLE_EMPLOYEE
+
     providers:
         app_user_provider:
             entity:
@@ -31,6 +35,15 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            user_checker: App\Security\UserChecker
+            form_login:
+                login_path: admin_login
+                check_path: admin_login
+                default_target_path: admin_dashboard
+                enable_csrf: true
+            logout:
+                path: admin_logout
+                target: admin_login
 
     access_control:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
@@ -43,6 +56,9 @@ security:
         - { path: ^/api/logout, roles: PUBLIC_ACCESS }
         - { path: ^/api/me, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/commandes, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/employee, roles: ROLE_EMPLOYEE }
+        - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_EMPLOYEE }
 
 when@test:
     security:

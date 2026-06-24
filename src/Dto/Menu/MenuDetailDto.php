@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Dto\Menu;
 
 use App\Entity\Menu;
+use App\Entity\Plat;
 
 final readonly class MenuDetailDto
 {
@@ -35,13 +36,16 @@ final readonly class MenuDetailDto
             ? mb_substr($description, 0, 117).'...'
             : $description;
 
-        $dishTypes = ['Entrée', 'Plat', 'Dessert'];
+        $dishTypes = [
+            Plat::TYPE_ENTREE => 'Entrée',
+            Plat::TYPE_PLAT => 'Plat',
+            Plat::TYPE_DESSERT => 'Dessert',
+        ];
         $dishes = [];
-        $index = 0;
         foreach ($menu->getPlats() as $plat) {
-            $type = $dishTypes[$index] ?? 'Plat';
+            $typeKey = (string) ($plat->getTypePlat() ?? Plat::TYPE_PLAT);
+            $type = $dishTypes[$typeKey] ?? 'Plat';
             $dishes[] = MenuDishDto::fromPlat($plat, $type);
-            ++$index;
         }
 
         $images = [];
@@ -88,7 +92,7 @@ final readonly class MenuDetailDto
         ];
     }
 
-    private static function buildConditions(Menu $menu): string
+    public static function buildConditions(Menu $menu): string
     {
         return sprintf(
             'Commande minimum %d personnes. Délai de commande : 72 h avant la prestation. Stock restant : %d menu(s). Livraison gratuite à Bordeaux, frais de livraison hors Bordeaux. Réduction de 10 %% à partir de %d personnes.',

@@ -1,0 +1,43 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% form_theme form '@EasyAdmin/crud/form_theme.html.twig' %}
+
+{% block content_title %}Annuler la commande{% endblock %}
+
+{% block main %}
+    <div class="vg-commande-action">
+        <div class="vg-commande-action__grid">
+            <aside class="vg-commande-action__aside">
+                {% include 'employee/commande/_summary.html.twig' %}
+            </aside>
+
+            <section class="vg-commande-action__panel content-panel vg-commande-action__panel--danger">
+                <p class="vg-eyebrow">Annulation</p>
+                <h2 class="vg-commande-action__title">Confirmer l'annulation</h2>
+                <p class="vg-commande-action__lead">
+                    Cette action est irréversible. Vous devez avoir contacté le client avant de confirmer.
+                </p>
+
+                <div class="vg-commande-action__alert" role="alert">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    <span>Assurez-vous d'avoir informé le client par téléphone ou par e-mail.</span>
+                </div>
+
+                {{ form_start(form, { attr: { class: 'vg-commande-form', novalidate: 'novalidate' } }) }}
+                    {{ form_row(form.contactMode) }}
+                    {{ form_row(form.employeeActionReason) }}
+                    {{ form_row(form.contactedAt) }}
+
+                    <div class="vg-commande-action__actions">
+                        <button class="btn btn-danger" type="submit">
+                            <i class="fa fa-ban"></i> Confirmer l'annulation
+                        </button>
+                        <a class="btn btn-secondary"
+                           href="{{ ea_url().setController('App\\Controller\\Employee\\Crud\\CommandeCrudController').setAction('detail').setEntityId(commande.id) }}">
+                            Retour
+                        </a>
+                    </div>
+                {{ form_end(form) }}
+            </section>
+        </div>
+    </div>
+{% endblock %}

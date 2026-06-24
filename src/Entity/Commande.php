@@ -76,6 +76,15 @@ class Commande
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $distanceLivraisonKm = null;
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $contactMode = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $employeeActionReason = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $contactedAt = null;
+
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotNull]
@@ -270,6 +279,42 @@ class Commande
     public function setDistanceLivraisonKm(?string $distanceLivraisonKm): static
     {
         $this->distanceLivraisonKm = $distanceLivraisonKm;
+
+        return $this;
+    }
+
+    public function getContactMode(): ?string
+    {
+        return $this->contactMode;
+    }
+
+    public function setContactMode(?string $contactMode): static
+    {
+        $this->contactMode = $contactMode;
+
+        return $this;
+    }
+
+    public function getEmployeeActionReason(): ?string
+    {
+        return $this->employeeActionReason;
+    }
+
+    public function setEmployeeActionReason(?string $employeeActionReason): static
+    {
+        $this->employeeActionReason = $employeeActionReason;
+
+        return $this;
+    }
+
+    public function getContactedAt(): ?\DateTimeImmutable
+    {
+        return $this->contactedAt;
+    }
+
+    public function setContactedAt(?\DateTimeImmutable $contactedAt): static
+    {
+        $this->contactedAt = $contactedAt;
 
         return $this;
     }

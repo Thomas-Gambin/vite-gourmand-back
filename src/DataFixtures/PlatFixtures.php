@@ -36,96 +36,112 @@ class PlatFixtures extends Fixture implements DependentFixtureInterface
                 'reference' => self::PLAT_FOIE_GRAS,
                 'titre' => 'Foie gras maison et chutney de figues',
                 'photo' => '/uploads/plats/foie-gras-figues.jpg',
+                'typePlat' => Plat::TYPE_ENTREE,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_SULFITES, AllergeneFixtures::ALLERGENE_GLUTEN],
             ],
             [
                 'reference' => self::PLAT_VELOUTE_POTIMARRON,
                 'titre' => 'Velouté de potimarron aux éclats de noisettes',
                 'photo' => '/uploads/plats/veloute-potimarron.jpg',
+                'typePlat' => Plat::TYPE_ENTREE,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_FRUITS_A_COQUE, AllergeneFixtures::ALLERGENE_LAIT],
             ],
             [
                 'reference' => self::PLAT_SALADE_ASPERGES,
                 'titre' => 'Salade printanière aux asperges',
                 'photo' => '/uploads/plats/salade-asperges.jpg',
+                'typePlat' => Plat::TYPE_ENTREE,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_MOUTARDE],
             ],
             [
                 'reference' => self::PLAT_TARTARE_SAUMON,
                 'titre' => 'Tartare de saumon aux agrumes',
                 'photo' => '/uploads/plats/tartare-saumon.jpg',
+                'typePlat' => Plat::TYPE_ENTREE,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_POISSON, AllergeneFixtures::ALLERGENE_SESAME],
             ],
             [
                 'reference' => self::PLAT_FEUILLETE_CHEVRE,
                 'titre' => 'Feuilleté de chèvre au miel',
                 'photo' => '/uploads/plats/feuillete-chevre.jpg',
+                'typePlat' => Plat::TYPE_ENTREE,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_GLUTEN, AllergeneFixtures::ALLERGENE_LAIT, AllergeneFixtures::ALLERGENE_OEUFS],
             ],
             [
                 'reference' => self::PLAT_SUPREME_VOLAILLE,
                 'titre' => 'Suprême de volaille sauce morilles',
                 'photo' => '/uploads/plats/supreme-volaille.jpg',
+                'typePlat' => Plat::TYPE_PLAT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_LAIT, AllergeneFixtures::ALLERGENE_SULFITES],
             ],
             [
                 'reference' => self::PLAT_FILET_BOEUF,
                 'titre' => 'Filet de bœuf rôti et gratin dauphinois',
                 'photo' => '/uploads/plats/filet-boeuf.jpg',
+                'typePlat' => Plat::TYPE_PLAT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_LAIT],
             ],
             [
                 'reference' => self::PLAT_PAVE_SAUMON,
                 'titre' => 'Pavé de saumon rôti aux herbes',
                 'photo' => '/uploads/plats/pave-saumon.jpg',
+                'typePlat' => Plat::TYPE_PLAT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_POISSON],
             ],
             [
                 'reference' => self::PLAT_RISOTTO_CHAMPIGNONS,
                 'titre' => 'Risotto crémeux aux champignons',
                 'photo' => '/uploads/plats/risotto-champignons.jpg',
+                'typePlat' => Plat::TYPE_PLAT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_LAIT, AllergeneFixtures::ALLERGENE_CELERI],
             ],
             [
                 'reference' => self::PLAT_CURRY_VEGAN,
                 'titre' => 'Curry vegan de légumes de saison',
                 'photo' => '/uploads/plats/curry-vegan.jpg',
+                'typePlat' => Plat::TYPE_PLAT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_SOJA],
             ],
             [
                 'reference' => self::PLAT_GIGOT_AGNEAU,
                 'titre' => 'Gigot d\'agneau confit aux herbes',
                 'photo' => '/uploads/plats/gigot-agneau.jpg',
+                'typePlat' => Plat::TYPE_PLAT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_SULFITES],
             ],
             [
                 'reference' => self::PLAT_BUCHE_CHOCOLAT,
                 'titre' => 'Bûche chocolat noisette',
                 'photo' => '/uploads/plats/buche-chocolat.jpg',
+                'typePlat' => Plat::TYPE_DESSERT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_LAIT, AllergeneFixtures::ALLERGENE_OEUFS, AllergeneFixtures::ALLERGENE_FRUITS_A_COQUE, AllergeneFixtures::ALLERGENE_GLUTEN],
             ],
             [
                 'reference' => self::PLAT_TARTE_CITRON,
                 'titre' => 'Tarte citron meringuée',
                 'photo' => '/uploads/plats/tarte-citron.jpg',
+                'typePlat' => Plat::TYPE_DESSERT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_GLUTEN, AllergeneFixtures::ALLERGENE_OEUFS, AllergeneFixtures::ALLERGENE_LAIT],
             ],
             [
                 'reference' => self::PLAT_ENTREMETS_FRAISE,
                 'titre' => 'Entremets fraise vanille',
                 'photo' => '/uploads/plats/entremets-fraise.jpg',
+                'typePlat' => Plat::TYPE_DESSERT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_LAIT, AllergeneFixtures::ALLERGENE_OEUFS],
             ],
             [
                 'reference' => self::PLAT_MOELLEUX_VEGAN,
                 'titre' => 'Moelleux chocolat vegan',
                 'photo' => '/uploads/plats/moelleux-vegan.jpg',
+                'typePlat' => Plat::TYPE_DESSERT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_SOJA, AllergeneFixtures::ALLERGENE_FRUITS_A_COQUE],
             ],
             [
                 'reference' => self::PLAT_PAVLOVA,
                 'titre' => 'Pavlova aux fruits rouges',
                 'photo' => '/uploads/plats/pavlova-fruits-rouges.jpg',
+                'typePlat' => Plat::TYPE_DESSERT,
                 'allergenes' => [AllergeneFixtures::ALLERGENE_OEUFS, AllergeneFixtures::ALLERGENE_LAIT],
             ],
         ];
@@ -134,6 +150,7 @@ class PlatFixtures extends Fixture implements DependentFixtureInterface
             $plat = new Plat();
             $plat->setTitrePlat($data['titre']);
             $plat->setPhoto($data['photo']);
+            $plat->setTypePlat($data['typePlat'] ?? Plat::TYPE_PLAT);
 
             foreach ($data['allergenes'] as $allergeneRef) {
                 $plat->addAllergene($this->getReference($allergeneRef, Allergene::class));

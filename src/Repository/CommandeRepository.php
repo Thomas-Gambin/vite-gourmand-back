@@ -49,6 +49,7 @@ class CommandeRepository extends ServiceEntityRepository
             ->andWhere('c.utilisateur = :utilisateur')
             ->setParameter('id', $id)
             ->setParameter('utilisateur', $utilisateur)
+            ->addOrderBy('h.dateModification', 'ASC')
             ->getQuery()
             ->getOneOrNullResult();
     }
