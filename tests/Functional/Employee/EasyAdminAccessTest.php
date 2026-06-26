@@ -121,6 +121,8 @@ final class EasyAdminAccessTest extends WebTestCase
 
         self::assertResponseIsSuccessful();
         self::assertStringNotContainsString('Theme #', (string) $client->getResponse()->getContent());
+        self::assertStringContainsString('vg-menu-plats-btn', (string) $client->getResponse()->getContent());
+        self::assertStringNotContainsString('Inaccessible', (string) $client->getResponse()->getContent());
     }
 
     private function createCommande(KernelBrowser $client, User $user, string $statut): Commande

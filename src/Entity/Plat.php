@@ -69,6 +69,11 @@ class Plat
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return (string) ($this->titrePlat ?? '');
+    }
+
     public function getPhoto(): ?string
     {
         return $this->photo;

@@ -59,6 +59,13 @@ class Menu
     private Collection $plats;
 
     /**
+     * @var Collection<int, MenuImage>
+     */
+    #[ORM\OneToMany(targetEntity: MenuImage::class, mappedBy: 'menu', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['position' => 'ASC', 'id' => 'ASC'])]
+    private Collection $images;
+
+    /**
      * @var Collection<int, Commande>
      */
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'menu')]
@@ -67,6 +74,7 @@ class Menu
     public function __construct()
     {
         $this->plats = new ArrayCollection();
+        $this->images = new ArrayCollection();
         $this->commandes = new ArrayCollection();
     }
 
@@ -181,6 +189,35 @@ class Menu
     {
         if ($this->plats->removeElement($plat)) {
             $plat->removeMenu($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MenuImage>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(MenuImage $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setMenu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(MenuImage $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            if ($image->getMenu() === $this) {
+                $image->setMenu(null);
+            }
         }
 
         return $this;

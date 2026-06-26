@@ -52,6 +52,11 @@ class Allergene
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return (string) ($this->libelle ?? '');
+    }
+
     /**
      * @return Collection<int, Plat>
      */

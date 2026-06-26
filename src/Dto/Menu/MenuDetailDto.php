@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Dto\Menu;
 
 use App\Entity\Menu;
+use App\Entity\MenuImage;
 use App\Entity\Plat;
 
 final readonly class MenuDetailDto
@@ -48,12 +49,7 @@ final readonly class MenuDetailDto
             $dishes[] = MenuDishDto::fromPlat($plat, $type);
         }
 
-        $images = [];
-        foreach ($menu->getPlats() as $plat) {
-            if ($plat->getPhoto() !== null && $plat->getPhoto() !== '') {
-                $images[] = $plat->getPhoto();
-            }
-        }
+        $images = self::resolveImages($menu);
 
         return new self(
             id: (int) $menu->getId(),
@@ -100,5 +96,31 @@ final readonly class MenuDetailDto
             $menu->getQuantiteRestante(),
             $menu->getNombrePersonneMinimum() + 5
         );
+    }
+
+    /**
+     * @return list<string>
+     */
+    public static function resolveImages(Menu $menu): array
+    {
+        $images = [];
+        foreach ($menu->getImages() as $menuImage) {
+            $path = $menuImage->getPublicPath();
+            if ($path !== null && $path !== '') {
+                $images[] = $path;
+            }
+        }
+
+        if ($images !== []) {
+            return array_values(array_unique($images));
+        }
+
+        foreach ($menu->getPlats() as $plat) {
+            if ($plat->getPhoto() !== null && $plat->getPhoto() !== '') {
+                $images[] = $plat->getPhoto();
+            }
+        }
+
+        return array_values(array_unique($images));
     }
 }

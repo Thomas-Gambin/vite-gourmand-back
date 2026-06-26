@@ -20,7 +20,7 @@ final class ListMenusController
 
     public function __invoke(): JsonResponse
     {
-        $menus = $this->menuRepository->findAll();
+        $menus = $this->menuRepository->findAllForApi();
         $items = array_map(
             static fn ($menu) => MenuDetailDto::fromMenu($menu)->toArray(),
             $menus

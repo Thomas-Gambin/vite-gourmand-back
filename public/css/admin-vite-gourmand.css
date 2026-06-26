@@ -232,6 +232,233 @@ body {
     white-space: nowrap;
 }
 
+.vg-menu-plats-btn {
+    border-radius: 999px;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+}
+
+.vg-menu-plats-modal .modal-header {
+    border-bottom-color: rgba(107, 44, 53, 0.12);
+}
+
+.vg-menu-plats-modal .modal-title {
+    color: var(--vg-text);
+    font-weight: 700;
+}
+
+.vg-menu-plats-list__item {
+    border-color: rgba(107, 44, 53, 0.08);
+    color: var(--vg-text);
+    font-weight: 500;
+    padding: 0.85rem 0;
+}
+
+.vg-menu-plats-list__item::before {
+    color: var(--vg-brand);
+    content: '•';
+    display: inline-block;
+    font-weight: 700;
+    margin-right: 0.65rem;
+}
+
+.vg-menu-admin-thumb {
+    border: 1px solid rgba(107, 44, 53, 0.12);
+    border-radius: 0.75rem;
+    display: inline-block;
+    margin: 0 0.5rem 0.5rem 0;
+    max-height: 96px;
+    object-fit: cover;
+}
+
+.vg-menu-images-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.vg-menu-images-gallery .vg-menu-admin-thumb {
+    margin: 0;
+    max-height: 120px;
+    max-width: 180px;
+    width: 100%;
+}
+
+.form-group.field-collection.vg-menu-images-field {
+    margin-bottom: 1.75rem;
+}
+
+.form-group.field-collection.vg-menu-images-field > legend,
+.form-group.field-collection.vg-menu-images-field > label {
+    color: var(--vg-text);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .form-help {
+    color: var(--vg-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    max-width: 42rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .form-widget {
+    background: linear-gradient(135deg, rgba(245, 236, 238, 0.55), rgba(255, 255, 255, 0.95));
+    border: 1px solid rgba(107, 44, 53, 0.14);
+    border-radius: 1rem;
+    padding: 1.25rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .ea-form-collection-items {
+    margin-bottom: 0.25rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .ea-form-collection-items .accordion {
+    border: none;
+    box-shadow: none;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.form-group.field-collection.vg-menu-images-field .field-collection-item .accordion-item {
+    background: var(--vg-surface-elevated);
+    border: 1px solid rgba(107, 44, 53, 0.12);
+    border-radius: 0.9rem;
+    box-shadow: 0 8px 20px rgba(42, 37, 32, 0.04);
+    overflow: hidden;
+}
+
+.form-group.field-collection.vg-menu-images-field .field-collection-item-first .accordion-item,
+.form-group.field-collection.vg-menu-images-field .field-collection-item-first .accordion-header,
+.form-group.field-collection.vg-menu-images-field .field-collection-item-last .accordion-item,
+.form-group.field-collection.vg-menu-images-field .field-collection-item-last .accordion-header {
+    border-radius: 0.9rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .accordion-header {
+    background: rgba(245, 236, 238, 0.55);
+    border-bottom: 1px solid rgba(107, 44, 53, 0.08);
+    padding-inline-end: 2.75rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .accordion-button {
+    color: var(--vg-brand);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.7rem 0.9rem;
+    text-transform: uppercase;
+}
+
+.form-group.field-collection.vg-menu-images-field .accordion-button .form-collection-item-collapse-marker {
+    display: none;
+}
+
+.form-group.field-collection.vg-menu-images-field .accordion-body {
+    padding: 1rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .vg-menu-image-upload .form-widget,
+.form-group.field-collection.vg-menu-images-field .vg-menu-image-upload .ea-fileupload {
+    width: 100%;
+}
+
+.form-group.field-collection.vg-menu-images-field .ea-fileupload-toolbar {
+    justify-content: center;
+}
+
+.form-group.field-collection.vg-menu-images-field .ea-fileupload-add-btn {
+    background: var(--vg-brand-muted);
+    border: 1px dashed rgba(107, 44, 53, 0.28);
+    border-radius: 0.75rem;
+    color: var(--vg-brand);
+    font-weight: 600;
+    padding: 0.55rem 1rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .ea-fileupload-card {
+    border-color: rgba(107, 44, 53, 0.12);
+    border-radius: 0.75rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .field-collection-delete-button {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 999px;
+    inset-block-start: 0.45rem;
+    inset-inline-end: 0.45rem;
+    line-height: 1;
+    padding: 0.35rem 0.45rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .vg-menu-images-empty {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.72);
+    border: 2px dashed rgba(107, 44, 53, 0.18);
+    border-radius: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 0.25rem;
+    padding: 2rem 1.25rem;
+    text-align: center;
+}
+
+.form-group.field-collection.vg-menu-images-field .vg-menu-images-empty__icon {
+    align-items: center;
+    background: var(--vg-brand-muted);
+    border-radius: 999px;
+    color: var(--vg-brand);
+    display: inline-flex;
+    font-size: 1.35rem;
+    height: 3.25rem;
+    justify-content: center;
+    margin-bottom: 0.35rem;
+    width: 3.25rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .vg-menu-images-empty__title {
+    color: var(--vg-text);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.form-group.field-collection.vg-menu-images-field .vg-menu-images-empty__hint {
+    color: var(--vg-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 24rem;
+}
+
+.form-group.field-collection.vg-menu-images-field .vg-menu-images-add-btn {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px dashed rgba(107, 44, 53, 0.28);
+    border-radius: 0.85rem;
+    color: var(--vg-brand);
+    display: inline-flex;
+    font-weight: 600;
+    gap: 0.45rem;
+    justify-content: center;
+    margin-block-start: 0.75rem;
+    padding: 0.8rem 1.15rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    width: 100%;
+}
+
+.form-group.field-collection.vg-menu-images-field .vg-menu-images-add-btn:hover {
+    background: var(--vg-brand-muted);
+    border-color: rgba(107, 44, 53, 0.45);
+    color: var(--vg-brand-light);
+    transform: translateY(-1px);
+}
+
 .table-hover tbody tr:hover {
     background-color: rgba(245, 236, 238, 0.45);
 }

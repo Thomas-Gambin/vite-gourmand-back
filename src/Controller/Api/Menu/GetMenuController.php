@@ -20,7 +20,7 @@ final class GetMenuController
 
     public function __invoke(int $id): JsonResponse
     {
-        $menu = $this->menuRepository->find($id);
+        $menu = $this->menuRepository->findOneForApi($id);
         if ($menu === null) {
             return new JsonResponse([
                 'code' => 'NOT_FOUND',
