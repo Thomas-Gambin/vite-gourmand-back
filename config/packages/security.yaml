@@ -17,7 +17,7 @@ security:
             pattern: ^/(_profiler|_wdt|assets|build)/
             security: false
         api_menus:
-            pattern: ^/api/menus
+            pattern: ^/api/(menus|horaires)
             security: false
         api:
             pattern: ^/api
