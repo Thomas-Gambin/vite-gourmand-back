@@ -102,4 +102,9 @@ class Avis
 
         return $this;
     }
+
+    public function getMenuTitre(): ?string
+    {
+        return $this->commande?->getMenu()?->getTitre();
+    }
 }

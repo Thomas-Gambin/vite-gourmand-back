@@ -79,6 +79,8 @@ final class AvisCrudController extends AbstractCrudController
     {
         yield IntegerField::new('note', 'Note');
         yield TextareaField::new('description', 'Commentaire');
+        yield TextField::new('menuTitre', 'Menu')
+            ->formatValue(static fn (?string $titre) => $titre ?? 'N/A');
         yield AssociationField::new('utilisateur', 'Client')
             ->formatValue(static fn (?User $user) => $user ? sprintf('%s %s', $user->getPrenom(), $user->getNom()) : '');
         yield AssociationField::new('commande', 'Commande')
