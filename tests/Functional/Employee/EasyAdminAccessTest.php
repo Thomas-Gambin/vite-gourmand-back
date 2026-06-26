@@ -125,6 +125,20 @@ final class EasyAdminAccessTest extends WebTestCase
         self::assertStringNotContainsString('Inaccessible', (string) $client->getResponse()->getContent());
     }
 
+    public function testEmployeeDashboardDoesNotShowAdminUserManagementMenu(): void
+    {
+        $client = static::createClient();
+        $email = $this->uniqueEmail('employee');
+        $this->createVerifiedUser($client, $email, 'ROLE_EMPLOYEE');
+        $client->loginUser($this->findUser($client, $email));
+
+        $client->request('GET', '/admin');
+
+        self::assertResponseIsSuccessful();
+        self::assertStringNotContainsString('http://localhost/admin/utilisateur', (string) $client->getResponse()->getContent());
+        self::assertStringNotContainsString('http://localhost/admin/employe', (string) $client->getResponse()->getContent());
+    }
+
     private function createCommande(KernelBrowser $client, User $user, string $statut): Commande
     {
         /** @var EntityManagerInterface $entityManager */

@@ -738,3 +738,45 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Liste utilisateurs / employés */
+.datagrid td.field-text.vg-user-email,
+.datagrid th.header-for-field-text:has(+ .header-for-field-text) {
+    min-width: 12rem;
+}
+
+.datagrid td[data-column="email"] {
+    font-weight: 500;
+    color: var(--vg-text);
+    word-break: break-word;
+}
+
+.datagrid td[data-column="prenom"] {
+    font-weight: 600;
+    color: var(--vg-text);
+    white-space: nowrap;
+}
+
+.datagrid td[data-column="telephone"] {
+    white-space: nowrap;
+}
+
+.datagrid td[data-column="accountStatus"] .badge {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+}
+
+.datagrid .actions-as-dropdown {
+    width: 3rem;
+    text-align: center;
+}
+
+.datagrid tr[data-id] {
+    vertical-align: middle;
+}
+
+.datagrid tr[data-id]:hover td {
+    background-color: var(--vg-brand-muted);
+}
