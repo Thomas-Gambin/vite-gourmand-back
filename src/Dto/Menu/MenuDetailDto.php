@@ -116,8 +116,9 @@ final readonly class MenuDetailDto
         }
 
         foreach ($menu->getPlats() as $plat) {
-            if ($plat->getPhoto() !== null && $plat->getPhoto() !== '') {
-                $images[] = $plat->getPhoto();
+            $path = $plat->getPhotoPublicPath();
+            if ($path !== null && $path !== '') {
+                $images[] = $path;
             }
         }
 

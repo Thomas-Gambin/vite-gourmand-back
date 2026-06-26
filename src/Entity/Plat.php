@@ -86,6 +86,19 @@ class Plat
         return $this;
     }
 
+    public function getPhotoPublicPath(): ?string
+    {
+        if ($this->photo === null || $this->photo === '') {
+            return null;
+        }
+
+        if (str_starts_with($this->photo, '/')) {
+            return $this->photo;
+        }
+
+        return '/uploads/plats/'.$this->photo;
+    }
+
     public function getTypePlat(): ?string
     {
         return $this->typePlat;

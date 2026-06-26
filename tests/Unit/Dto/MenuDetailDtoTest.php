@@ -25,7 +25,7 @@ final class MenuDetailDtoTest extends TestCase
         $plat = new Plat();
         $plat->setTitrePlat('Entrée test');
         $plat->setTypePlat(Plat::TYPE_ENTREE);
-        $plat->setPhoto('/uploads/plats/entree.jpg');
+        $plat->setPhoto('entree.jpg');
         $menu->addPlat($plat);
 
         self::assertSame(['/uploads/menus/menu-cover.jpg'], MenuDetailDto::resolveImages($menu));
@@ -38,7 +38,7 @@ final class MenuDetailDtoTest extends TestCase
         $plat = new Plat();
         $plat->setTitrePlat('Dessert test');
         $plat->setTypePlat(Plat::TYPE_DESSERT);
-        $plat->setPhoto('/uploads/plats/dessert.jpg');
+        $plat->setPhoto('dessert.jpg');
         $menu->addPlat($plat);
 
         self::assertSame(['/uploads/plats/dessert.jpg'], MenuDetailDto::resolveImages($menu));

@@ -14,6 +14,7 @@ final readonly class MenuDishDto
         public string $name,
         public string $type,
         public ?string $description,
+        public ?string $photo,
         /** @var list<array{id: int, name: string}> */
         public array $allergens,
     ) {
@@ -34,6 +35,7 @@ final readonly class MenuDishDto
             name: (string) $plat->getTitrePlat(),
             type: $type,
             description: null,
+            photo: $plat->getPhotoPublicPath(),
             allergens: $allergens,
         );
     }
@@ -48,6 +50,7 @@ final readonly class MenuDishDto
             'name' => $this->name,
             'type' => $this->type,
             'description' => $this->description,
+            'photo' => $this->photo,
             'allergens' => $this->allergens,
         ];
     }
